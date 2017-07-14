@@ -7,8 +7,9 @@ max_numPatches = batchSize*2000;
 modelName      = 'model_MC_Res_Bnorm_Adam';
 
 %%% training and testing
-folder_train  = 'datasetcombine';  %%% training
-folder_val   = 'datasetcombine';%%% testing
+folder_train  = 'trainset\5\';  %%% training
+folder_val   = 'valset\5\';%%% testing
+folder = 'E:\datasetcombine\';
 
 size_input    = 40;          %%% training
 size_label    = 40;          %%% testing
@@ -20,8 +21,8 @@ val_train     = 0;           %%% training % default
 val_test      = 1;           %%% testing  % default
 
 %%% testing  patches
-[inputs,labels,set] = mat_patches_generation_tanh(size_input,size_label,stride_test,folder_val,val_train,max_numPatches,batchSize);
-[inputs2,labels2,set2] = mat_patches_generation_tanh(size_input,size_label,stride_test,folder_val,val_test,max_numPatches,batchSize);
+[inputs,labels,set] = mat_patches_generationLDR(size_input,size_label,stride_test,folder,folder_train,val_train,max_numPatches,batchSize);
+[inputs2,labels2,set2] = mat_patches_generationLDR(size_input,size_label,stride_test,folder,folder_val,val_test,max_numPatches,batchSize);
 
 %%% training patches
 inputs   = cat(4,inputs,inputs2);      clear inputs2;
