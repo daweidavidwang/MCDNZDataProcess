@@ -21,11 +21,11 @@ if __name__ == "__main__":
 	spp32 = 1;
 	spp64 = 1;
 	
-	gtdir = "E:\\datasetcombine\\GT"
-	dir8 = "E:\\datasetcombine\\8SPP"
-	dir16 = "E:\\datasetcombine\\16SPP"
-	dir32 = "E:\\datasetcombine\\32SPP"
-	dir64 = "E:\\datasetcombine\\64SPP"
+	gtdir = "E:\\datasetcombine\\valuableGT"
+	dir8 = "F:\\dataset1_var_train\\4spp"
+	dir16 = "F:\\dataset1_var_train\\8spp"
+	dir32 = "F:\\dataset1_var_train\\16spp"
+	dir64 = "F:\\dataset1_var_train\\32spp"
 
 	filelistgt = [];
 	filelist8 = [];

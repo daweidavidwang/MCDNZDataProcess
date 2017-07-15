@@ -1,4 +1,4 @@
-function [inputs, labels, set] = mat_patches_generationLDR(size_input,size_label,stride,folder,mode,max_numPatches,batchSize)
+function [inputs, labels, set] = mat_patches_generationLDR(size_input,size_label,stride,folder,folderpa,mode,max_numPatches,batchSize)
 
 featureNum = 16;
 inputs  = zeros(size_input, size_input, featureNum, 1,'single');
@@ -8,10 +8,8 @@ padding = abs(size_input - size_label)/2;
 
 ext               =  {'*.mat','*.jpg'};
 filepathsGt           =  [];
-filepathsData           =  [];
 
-folderGt = fullfile(folder,'gtv','jpg');
-folderData = fullfile(folder,'data');
+folderGt = fullfile(folder,folderpa);
 
 % spp = {'4SPP','8SPP','16SPP','32SPP','64SPP'};
 % jpgName = ['_MC_0004.jpg';'_MC_0008.jpg';'_MC_0016.jpg';'_MC_0032.jpg';'_MC_0064.jpg'];
@@ -20,7 +18,6 @@ jpgName = ['_MC_0004.jpg';'_MC_0008.jpg';'_MC_0016.jpg';'_MC_0032.jpg';'_MC_0064
 
 for i = 1 : length(ext)
     filepathsGt = cat(1,filepathsGt, dir(fullfile(folderGt, ext{i})));
-    filepathsData = cat(1,filepathsData, dir(fullfile(folderData, ext{i})));
 end
 
 for i = 1 : length(filepathsGt)
@@ -33,14 +30,12 @@ for i = 1 : length(filepathsGt)
         folderData = fullfile(folderData,'jpg');
         tmp = fullfile(folderData,[filepathsGt(i).name(1:end-4),jpgName(index,:)] );
         input_jpg = im2single( imread( char(tmp) ));
-        input_im = load( char(fullfile(folderData,[filepathsGt(i).name(1:end-4),'.mat'] )) );
+        input_im = load( char(fullfile(folderDataFeature,[filepathsGt(i).name(1:end-4),'.mat'] )) );
         input_im = single(reshape(input_im.doublefeature,[size(input_jpg,2) size(input_jpg,1) 18]));
         input_im = permute( input_im(:,:,3:end), [2,1,3] );
         
         input_im(:,:,1:3) = input_jpg;
         for k = 4:16
-            %             tmp = input_im(:,:,j);
-            %             input_im(:,:,j) = (input_im(:,:,j) - mean(tmp(:)))/std(tmp(:));
             input_im(:,:,k) = ( input_im(:,:,k) - min(min(input_im(:,:,k))) )/( max(max(input_im(:,:,k))) - min(min(input_im(:,:,k))) );
         end
         
