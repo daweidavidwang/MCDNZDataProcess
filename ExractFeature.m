@@ -1,7 +1,7 @@
-folderGT = 'E:\datasetcombine\valuableGT';
-folderMat = 'F:\dataset1_var_train\64spp';
-folderJpg = 'F:\dataset1_var_train\64spp\exr\jpg';
-folderNewFeature = 'F:\dataset1_var_train\64spp\NewFeature';
+folderGT = 'G:\DatasetWithSecondFeature_aug2\new_size\GT\jpg';
+folderMat = 'G:\DatasetWithSecondFeature_aug2\new_size\64SPP\Feature';
+folderJpg = 'G:\DatasetWithSecondFeature_aug2\new_size\64SPP\varexr\jpg';
+folderNewFeature = 'G:\DatasetWithSecondFeature_aug2\new_size\64SPP\NewFeature';
 filepathGt = [];
 
 ext               =  {'*.jpg'};

@@ -7,14 +7,14 @@ max_numPatches = batchSize*2000;
 modelName      = 'model_MC_Res_Bnorm_Adam';
 
 %%% training and testing
-folder_train  = 'E:\datasetcombine\HDRset\TrainSet\1\';  %%% training
-folder_val   = 'E:\datasetcombine\HDRset\ValSet\1\';%%% testing
-folder = 'G:\DatasetWithSecondFeature\';
+folder_train  = 'G:\DatasetWithSecondFeature_aug3\onecheck';  %%% training
+folder_val   = 'G:\DatasetWithSecondFeature_aug3\onecheck';%%% testing
+folder = 'G:\DatasetWithSecondFeature_aug3';
 
-size_input    = 40;          %%% training
-size_label    = 40;          %%% testing
-stride_train  = 20;          %%% training
-stride_test   = 30;          %%% testing
+size_input    = 64;          %%% training
+size_label    = 64;          %%% testing
+stride_train  = 32;          %%% training
+stride_test   = 40;          %%% testing
 
 val_train     = 0;           %%% training % default
 val_test      = 1;           %%% testing  % default
@@ -24,18 +24,17 @@ val_test      = 1;           %%% testing  % default
 [inputs2,labels2,set2] = PatchGenerationWithSecondFeatureHDRtanh(size_input,size_label,stride_test,folder,folder_val,val_test,max_numPatches,batchSize);
 
 %%% training patches
-inputs   = cat(4,inputs,inputs2);      clear inputs2;
-save(fullfile(modelName,'imdb'),'inputs','-v7.3');
-clear inputs;
-labels   = cat(4,labels,labels2);      clear labels2;
-save(fullfile(modelName,'imdb'),'labels','-append');
-clear labels;
 
-set      = cat(2,set,set2);            clear set2;
+imdb.images.data   = cat(4,inputs,inputs2); 
+
+imdb.images.label   = cat(4,labels(:,:,1:3,:),labels2(:,:,1:3,:));  
+
+imdb.images.noisep  =  cat(4,labels(:,:,4:6,:),labels2(:,:,4:6,:));
+imdb.images.set      = cat(2,set,set2);  
 if ~exist(modelName,'file')
     mkdir(modelName);
 end
-save(fullfile(modelName,'imdb'),'set','-append');
+save(fullfile(modelName,'imdb2'),'imdb','-v7.3');
 clear('set');
 %%clear('labels');
 %inputs   = cat(4,inputs,inputs2);      clear inputs2;

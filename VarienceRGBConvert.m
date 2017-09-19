@@ -1,6 +1,6 @@
-folderGT = 'E:\datasetcombine\valuableGT';
-folderMat = 'F:\dataset1_var_train\64spp';
-folderExr = 'F:\dataset1_var_train\64spp\exr';
+folderGT = 'I:\DatasetWithSecondFeature_aug3\GT\jpg';
+folderMat = 'I:\DatasetWithSecondFeature_aug3\64SPP\Feature';
+folderExr = 'I:\DatasetWithSecondFeature_aug3\64SPP\varexr';
 filepathGt = [];
 ext               =  {'*.jpg'};
 for i = 1 : length(ext)
