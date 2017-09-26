@@ -7,14 +7,14 @@ max_numPatches = batchSize*2000;
 modelName      = 'model_MC_Res_Bnorm_Adam';
 
 %%% training and testing
-folder_train  = 'E:\datasetcombine\trainset\4\';  %%% training
-folder_val   = 'E:\datasetcombine\valset\4\';%%% testing
-folder = 'G:\DatasetWithSecondFeature\';
+folder_train  = 'I:\DatasetWithSecondFeature_aug2NewSize\ttt';  %%% training
+folder_val   = 'I:\DatasetWithSecondFeature_aug2NewSize\ttt';%%% testing
+folder = 'I:\DatasetWithSecondFeature_aug2NewSize\';
 
-size_input    = 40;          %%% training
-size_label    = 40;          %%% testing
-stride_train  = 20;          %%% training
-stride_test   = 30;          %%% testing
+size_input    = 64;          %%% training
+size_label    = 64;          %%% testing
+stride_train  = 30;          %%% training
+stride_test   = 40;          %%% testing
 
 val_train     = 0;           %%% training % default
 val_test      = 1;           %%% testing  % default

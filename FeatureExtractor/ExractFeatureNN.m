@@ -1,7 +1,7 @@
-folderGT = 'G:\DatasetWithSecondFeature_aug2\new_size\GT\jpg';
-folderMat = 'G:\DatasetWithSecondFeature_aug2\new_size\64SPP\Feature';
-folderJpg = 'G:\DatasetWithSecondFeature_aug2\new_size\64SPP\varexr\jpg';
-folderNewFeature = 'G:\DatasetWithSecondFeature_aug2\new_size\64SPP\NewFeature';
+folderGT = 'I:\DatasetWithSecondFeature_aug3\GT\jpg';
+folderMat = 'I:\DatasetWithSecondFeature_aug3\4SPP\Feature';
+folderJpg = 'I:\DatasetWithSecondFeature_aug3\4SPP\varexr\jpg';
+folderNewFeature = 'I:\DatasetWithSecondFeature_aug3\4SPP\FeatureNN';
 filepathGt = [];
 
 ext               =  {'*.jpg'};
@@ -38,10 +38,11 @@ for i = 1 : length(filepathGt)
      gytex1 = (gytex11+gytex12+gytex13)/3;
      gxtex2 = (gxtex21+gxtex22+gxtex23)/3;
      gytex2 = (gytex21+gytex22+gytex23)/3;
-     normvar = (sum(input_var(:,:,7:9),3)/3);
-     tex1var = (sum(input_var(:,:,10:12),3)/3);
-     tex2var = (sum(input_var(:,:,13:15),3)/3);
-     posvar = (sum(input_var(:,:,3:6),3)/3);
+%      normvar = (sum(input_var(:,:,7:9),3)/3);
+%      tex1var = (sum(input_var(:,:,10:12),3)/3);
+%      tex2var = (sum(input_var(:,:,13:15),3)/3);
+%      posvar = (sum(input_var(:,:,3:6),3)/3);
+     visvar = input_var(:,:,16);
      SecondFeature(:,:,1) = gxpos;
      SecondFeature(:,:,2) = gypos;
      SecondFeature(:,:,3) = gxnorm;
@@ -52,14 +53,17 @@ for i = 1 : length(filepathGt)
      SecondFeature(:,:,8) = gytex2;
      SecondFeature(:,:,9) = input_fea(:,:,16);
      SecondFeature(:,:,10) = rgb2gray(rgbvar)/255;
-     SecondFeature(:,:,11) = posvar;
-     SecondFeature(:,:,12) = normvar;
-     SecondFeature(:,:,13) = tex1var;
-     SecondFeature(:,:,14) = tex2var;
+     SecondFeature(:,:,11) = visvar;
+     SecondFeature(:,:,12) = input_fea(:,:,10);
+     SecondFeature(:,:,13) = input_fea(:,:,11);
+     SecondFeature(:,:,14) = input_fea(:,:,12);
+     SecondFeature(:,:,15) = input_fea(:,:,13);
+     SecondFeature(:,:,16) = input_fea(:,:,14);
+     SecondFeature(:,:,17) = input_fea(:,:,15);
      for j = 1:8
          SecondFeature(:,:,j) = (SecondFeature(:,:,j)/(max(max(SecondFeature(:,:,j)))-min(min(SecondFeature(:,:,j)))))*2;
      end
-     for k = 11:14
+     for k = 11:16
          SecondFeature(:,:,k) = (SecondFeature(:,:,k)/(max(max(SecondFeature(:,:,k)))-min(min(SecondFeature(:,:,k)))));
      end
      save(fullfile(folderNewFeature,[filepathGt(i).name(1:end-4),'.mat']),'SecondFeature');

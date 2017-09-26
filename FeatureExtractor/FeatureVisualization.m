@@ -1,6 +1,6 @@
-matpath = 'E:\datasetcombine\16SPP\Feature';
-prepath = 'E:\datasetcombine\16SPP\pre';
-exrpath = 'E:\datasetcombine\16SPP';
+matpath = 'F:\recover\4SPP\Feature';
+prepath = 'F:\recover\4SPP\pre';
+exrpath = 'F:\recover\4SPP\exr';
 ext = {'*.mat'};
 filelist = [];
 
@@ -10,8 +10,8 @@ end
 
 for i =  1 : length(filelist)
     input_im = load( char(fullfile(matpath,[filelist(i).name(1:end-4),'.mat'] )) );
-    input_exr = exrread(fullfile(exrpath,[filelist(i).name(1:end-4),'_MC_0016.exr'] ));
-    input_im = single(reshape(input_im.doublefeature,[size(input_exr,2) size(input_exr,1) 18]));
+    input_exr = exrread(fullfile(exrpath,[filelist(i).name(1:end-4),'_MC_0004.exr'] ));
+    input_im = single(reshape(input_im.FirstFeature,[size(input_exr,2) size(input_exr,1) 18]));
     input_im = permute( input_im(:,:,3:end), [2,1,3] );
      for k = 4:16
         input_im(:,:,k) = ( input_im(:,:,k) - min(min(input_im(:,:,k))) )/( max(max(input_im(:,:,k))) - min(min(input_im(:,:,k))) );

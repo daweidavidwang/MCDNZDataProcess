@@ -1,0 +1,24 @@
+AllinMat is developed for environment without HDRItools to generate IMDB.
+The content of it is stored in a variance called 'data'
+
+'data' consists 40 channels:
+1-3 RGB(HDR)
+4-6 world position
+7-9 normal vector
+10-12 texture1
+13-15 texture2
+16 visibility
+17-19 color variance
+20-22 world position variance 
+23-25 normal variance 
+26-28 texture1 variance 
+29-31 texture2 variance 
+32 visibility variance 
+33 x-direct gradient of world position
+34 y-direct gradient of world position
+35 x-direct gradient of normal
+36 y-direct gradient of normal
+37 x-direct gradient of texture1
+38 y-direct gradient of texture1
+39 x-direct gradient of texture2
+40 y-direct gradient of texture2
