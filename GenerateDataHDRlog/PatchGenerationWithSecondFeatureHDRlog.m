@@ -38,7 +38,6 @@ for i = 1 : length(filepathsGt)
         
         image = cat(3,image,input_im(:,:,1:3));%将input图像放入GT中，用于残差的相加操作
        
-        for j = 1:4
             image_aug = image;  % augment data
             input_im_aug =  input_im;  % augment data
 %             clear image; clear input_im;
@@ -71,7 +70,7 @@ for i = 1 : length(filepathsGt)
                 end
             end
             clear im_label;clear im_data; clear subim_input; clear subim_label;
-        end
+       
     end
     
     

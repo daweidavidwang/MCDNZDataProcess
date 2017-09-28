@@ -20,21 +20,21 @@ val_train     = 0;           %%% training % default
 val_test      = 1;           %%% testing  % default
 
 %%% testing  patches
-[inputs,labels,set] = PatchGenerationWithSecondFeatureHDRlog(size_input,size_label,stride_test,folder,folder_train,val_train,max_numPatches,batchSize);
+[inputs,labels,set] = PatchGenerationWithSecondFeatureHDRlog(size_input,size_label,stride_train,folder,folder_train,val_train,max_numPatches,batchSize);
 [inputs2,labels2,set2] = PatchGenerationWithSecondFeatureHDRlog(size_input,size_label,stride_test,folder,folder_val,val_test,max_numPatches,batchSize);
 
 %%% training patches
 
 inputs   = cat(4,inputs,inputs2); 
 clear inputs2;
-save(fullfile(modelName,'10piclog'),'inputs','-v7.3');
+save(fullfile('10piclog'),'inputs','-v7.3');
 clear inputs;
 labels   = cat(4,labels,labels2); 
-save(fullfile(modelName,'10piclog'),'labels','-append');
+save(fullfile('10piclog'),'labels','-append');
 clear labels;
 clear labels2
 set      = cat(2,set,set2); 
-save(fullfile(modelName,'10piclog'),'set','-append');
+save(fullfile('10piclog'),'set','-append');
 if ~exist(modelName,'file')
     mkdir(modelName);
 end
